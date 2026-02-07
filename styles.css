@@ -1,68 +1,77 @@
-* { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-
 body {
   margin: 0;
-  background: #faf7f8;
-  color: #333;
-  transition: 0.3s;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-family: Tahoma;
+  transition: 0.4s;
 }
 
-body.dark { background: #121212; color: #eee; }
-
-header {
-  padding: 20px;
-  background: #ffffff;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-body.dark header { background: #1e1e1e; }
-
-header h1 { margin: 0; font-weight: 700; font-family: 'Pacifico', cursive; }
-
-nav button {
-  background: none; border: none; margin: 0 5px;
-  font-size: 16px; cursor: pointer; color: inherit;
-}
-nav button:hover { text-decoration: underline; }
-
-.dark-btn {
-  border: none; background: #f0f0f0; padding: 6px 10px; border-radius: 50%; cursor: pointer;
-}
-body.dark .dark-btn { background: #333; }
-
-main {
-  padding: 40px 20px;
-  max-width: 800px;
+.app {
+  max-width: 720px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
+  padding: 30px;
+  text-align: center;
 }
 
-.section { display: none; width: 100%; }
-.section.active { display: block; }
+.fixed-text {
+  color: #555;
+  pointer-events: none;
+}
 
-.section h2 { margin-bottom: 20px; text-align: center; }
+.controls button {
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.messages {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.side {
+  width: 35%;
+}
+
+.side button {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.content {
+  width: 65%;
+}
+
+#messageArea {
+  min-height: 120px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+}
 
 .card {
   background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 14px;
-  line-height: 1.8;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  width: 100%;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
 }
 
-body.dark .card { background: #1f1f1f; }
+input {
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px;
+}
 
-footer { text-align: center; padding: 20px; color: #777; font-size: 14px; }
+/* الكتابة الهادئة */
+.quiet .controls,
+.quiet .side {
+  opacity: 0.2;
+}
+
+/* الألوان */
+.theme-purple { background:#f3ecff; }
+.theme-green { background:#eaf7ef; }
+.theme-blue { background:#eaf1ff; }
+.theme-beige { background:#f7f1e6; }
