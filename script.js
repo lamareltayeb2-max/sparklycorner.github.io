@@ -1,27 +1,28 @@
-// -------------------- التنقل بين الأقسام --------------------
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(section => {
-    section.classList.remove('active');
-  });
+// التنقل بين الأقسام
+function showSection(id){
+  document.querySelectorAll('.section').forEach(sec=>sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// -------------------- الوضع الليلي --------------------
-function toggleDark() {
+// الوضع الليلي
+function toggleDark(){
   document.body.classList.toggle('dark');
 }
 
-// -------------------- الكتابة المباشرة والحفظ التلقائي --------------------
-window.addEventListener('DOMContentLoaded', () => {
+// اختيار لون الخلفية
+function changeBackground(){
+  const color = document.getElementById('bgColorSelect').value;
+  document.body.style.background = color;
+}
+
+// حفظ كل النصوص القابلة للكتابة
+window.addEventListener('DOMContentLoaded',()=>{
   const editableElements = document.querySelectorAll('[contenteditable]');
-  
-  // تحميل النصوص المحفوظة
-  editableElements.forEach(el => {
+  editableElements.forEach(el=>{
     const saved = localStorage.getItem(el.id);
     if(saved) el.innerHTML = saved;
 
-    // حفظ النصوص عند التغيير
-    el.addEventListener('input', () => {
+    el.addEventListener('input',()=>{
       localStorage.setItem(el.id, el.innerHTML);
     });
   });
