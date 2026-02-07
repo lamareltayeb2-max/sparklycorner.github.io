@@ -1,83 +1,64 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sparkly Corner 🌸</title>
 
-  <!-- الخط -->
+  <!-- خطوط عربية جميلة -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
+  <!-- ربط ملف CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-  <h1>Sparkly Corner 🌸</h1>
+  <!-- ---------------- Header ---------------- -->
+  <header>
+    <h1>Sparkly Corner 🌸</h1>
+    <nav>
+      <button onclick="showSection('home')">الرئيسية</button>
+      <button onclick="showSection('thoughts')">خواطر</button>
+      <button onclick="showSection('reflections')">تأملات</button>
+      <button onclick="showSection('messages')">رسائل</button>
+    </nav>
+    <button class="dark-btn" onclick="toggleDark()">🌙</button>
+  </header>
 
-  <nav>
-    <button onclick="showSection('home')">الرئيسية</button>
-    <button onclick="showSection('thoughts')">خواطر</button>
-    <button onclick="showSection('reflections')">تأملات</button>
-    <button onclick="showSection('messages')">رسائل</button>
-  </nav>
+  <!-- ---------------- Main Content ---------------- -->
+  <main>
+    <section id="home" class="section active">
+      <h2>مرحبا بك في Sparkly Corner</h2>
+      <p>هنا مساحة للهدوء، التأمل، والخواطر الإنسانية 🌿</p>
+    </section>
 
-  <button class="dark-btn" onclick="toggleDark()">🌙</button>
-</header>
+    <section id="thoughts" class="section">
+      <h2>خواطر</h2>
+      <div class="card">
+        <p>ابدأي بكتابة خواطرك هنا ✍️</p>
+      </div>
+    </section>
 
-<main>
+    <section id="reflections" class="section">
+      <h2>تأملات</h2>
+      <div class="card">
+        <p>كتبي تأملاتك وشارك الهدوء الداخلي 💭</p>
+      </div>
+    </section>
 
-  <section id="home" class="section active">
-    <h2>مرحبًا بك</h2>
-    <p>
-      هذه مساحة هادئة، للكلمات التي تُكتب من القلب  
-      وللخواطر التي لا تجد مكانًا إلا هنا 🌿
-    </p>
-  </section>
+    <section id="messages" class="section">
+      <h2>رسائل</h2>
+      <div class="card">
+        <p>رسائل جميلة يمكنك الاحتفاظ بها هنا ✉️</p>
+      </div>
+    </section>
+  </main>
 
-  <section id="thoughts" class="section">
-    <h2>خواطر</h2>
-    <div class="card">
-      أحيانًا لا نحتاج إلى إجابة،  
-      نحتاج فقط أن يُصغى إلينا.
-    </div>
-    <div class="card">
-      القلوب التي تشعر بعمق  
-      تتعب أكثر، لكنها ترى الجمال أوضح.
-    </div>
-  </section>
+  <footer>
+    <p>© 2026 Sparkly Corner — كتبت بهدوء ✨</p>
+  </footer>
 
-  <section id="reflections" class="section">
-    <h2>تأملات</h2>
-    <div class="card">
-      كل شيء يمر،  
-      حتى الأيام التي نظن أنها لن تنتهي.
-    </div>
-    <div class="card">
-      السلام لا يأتي من الخارج،  
-      بل من فهمنا لأنفسنا.
-    </div>
-  </section>
-
-  <section id="messages" class="section">
-    <h2>رسائل</h2>
-    <div class="card">
-      إلى نفسك:  
-      أنت تحاول، وهذا كافٍ اليوم 🤍
-    </div>
-    <div class="card">
-      لا تقسو على قلبك،  
-      لقد نجا من الكثير.
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2026 Sparkly Corner — كتبت بهدوء ✨</p>
-</footer>
-
-<script src="script.js"></script>
+  <!-- ربط ملف JS -->
+  <script src="script.js"></script>
 </body>
 </html>
