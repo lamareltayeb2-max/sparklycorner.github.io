@@ -1,287 +1,83 @@
- <!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مذكرتي الاحترافية 🌸</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sparkly Corner 🌸</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <!-- الخط -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
-<style>
-/* -------------------- التصميم العام -------------------- */
-* { box-sizing: border-box; }
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #ffe4e1;
-  color: #333;
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-body.dark { background: #121212; color: #f0f0f0; }
-
-/* -------------------- Sidebar -------------------- */
-#sidebar {
-  width: 220px;
-  background: #fff0f5;
-  border-right: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  transition: all 0.3s;
-}
-body.dark #sidebar { background: #1f1f1f; }
-
-/* -------------------- Sidebar items -------------------- */
-.sidebar-item {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.sidebar-item.active { background: #880e4f; color: #fff; }
-.sidebar-item:hover { background: #f8c8dc; }
-
-/* -------------------- Main Content -------------------- */
-#main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  padding: 20px;
-}
-
-/* -------------------- Note Cards -------------------- */
-.note-card {
-  border-radius: 12px;
-  background: rgba(255,255,255,0.7);
-  padding: 15px;
-  margin-bottom: 15px;
-  min-height: 100px;
-  transition: 0.3s;
-  cursor: text;
-}
-body.dark .note-card { background: rgba(50,50,50,0.7); }
-
-/* -------------------- Editable Titles -------------------- */
-.note-card h3 { margin-top:0; }
-.text-editable { border:none; outline:none; width:100%; font-size:16px; }
-
-/* -------------------- Toolbar -------------------- */
-#toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-#toolbar button, select, input[type="color"], input[type="file"] {
-  margin: 5px;
-  padding: 6px 12px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  font-size: 14px;
-  transition:0.3s;
-}
-#toolbar button:hover, select:hover, input:hover { transform: scale(1.05); }
-
-/* -------------------- Images & Stickers -------------------- */
-#imagesContainer, #stickersContainer { display:flex; flex-wrap:wrap; margin-top:10px; }
-img.user-image, img.sticker { width:80px; margin:5px; border-radius:10px; cursor:pointer; }
-</style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- -------------------- Sidebar -------------------- -->
-<div id="sidebar">
-  <h2>الملاحظات</h2>
-  <div id="notesList"></div>
-  <button onclick="addNote()">➕ إضافة مذكرة جديدة</button>
-</div>
+<header>
+  <h1>Sparkly Corner 🌸</h1>
 
-<!-- -------------------- Main Content -------------------- -->
-<div id="main">
-  <!-- Toolbar -->
-  <div id="toolbar">
-    <button onclick="toggleDark()">الوضع الليلي</button>
-    <button onclick="toggleDesign()">تغيير التصميم</button>
-    <select id="fontSelect" onchange="changeFont()">
-      <option value="thin">رقيق</option>
-      <option value="cute">كيوت</option>
-      <option value="bold">ثقيل</option>
-    </select>
-    <input type="color" id="textColor" onchange="changeColor()" value="#333333">
-    <input type="file" id="imageUpload" accept="image/*" multiple>
-    <button onclick="exportPDF()">تصدير PDF</button>
-  </div>
+  <nav>
+    <button onclick="showSection('home')">الرئيسية</button>
+    <button onclick="showSection('thoughts')">خواطر</button>
+    <button onclick="showSection('reflections')">تأملات</button>
+    <button onclick="showSection('messages')">رسائل</button>
+  </nav>
 
-  <!-- Stickers -->
-  <h3>الملصقات:</h3>
-  <div id="stickersContainer">
-    <img src="https://i.postimg.cc/Qd5Xn7Rn/sticker1.png" class="sticker" draggable="true">
-    <img src="https://i.postimg.cc/3x1Fk6Vm/sticker2.png" class="sticker" draggable="true">
-  </div>
+  <button class="dark-btn" onclick="toggleDark()">🌙</button>
+</header>
 
-  <!-- Notes Area -->
-  <div id="notesArea"></div>
+<main>
 
-  <div id="imagesContainer"></div>
-</div>
+  <section id="home" class="section active">
+    <h2>مرحبًا بك</h2>
+    <p>
+      هذه مساحة هادئة، للكلمات التي تُكتب من القلب  
+      وللخواطر التي لا تجد مكانًا إلا هنا 🌿
+    </p>
+  </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-// -------------------- المتغيرات --------------------
-let isCute = true;
-let notes = [];
+  <section id="thoughts" class="section">
+    <h2>خواطر</h2>
+    <div class="card">
+      أحيانًا لا نحتاج إلى إجابة،  
+      نحتاج فقط أن يُصغى إلينا.
+    </div>
+    <div class="card">
+      القلوب التي تشعر بعمق  
+      تتعب أكثر، لكنها ترى الجمال أوضح.
+    </div>
+  </section>
 
-// -------------------- الوظائف --------------------
-// إضافة مذكرة جديدة
-function addNote(){
-  const id = Date.now();
-  const note = {id:id, title:'عنوان المذكرة', content:'اكتب هنا ✍️'};
-  notes.push(note);
-  renderSidebar();
-  renderNotesArea();
-  saveNotes();
-}
+  <section id="reflections" class="section">
+    <h2>تأملات</h2>
+    <div class="card">
+      كل شيء يمر،  
+      حتى الأيام التي نظن أنها لن تنتهي.
+    </div>
+    <div class="card">
+      السلام لا يأتي من الخارج،  
+      بل من فهمنا لأنفسنا.
+    </div>
+  </section>
 
-// عرض الملاحظات في Sidebar
-function renderSidebar(){
-  const list = document.getElementById('notesList');
-  list.innerHTML='';
-  notes.forEach((n,i)=>{
-    const div = document.createElement('div');
-    div.className='sidebar-item'+(i===0?' active':'');
-    div.innerText=n.title;
-    div.onclick=()=>{ activateNote(i); };
-    list.appendChild(div);
-  });
-}
+  <section id="messages" class="section">
+    <h2>رسائل</h2>
+    <div class="card">
+      إلى نفسك:  
+      أنت تحاول، وهذا كافٍ اليوم 🤍
+    </div>
+    <div class="card">
+      لا تقسو على قلبك،  
+      لقد نجا من الكثير.
+    </div>
+  </section>
 
-// عرض الملاحظات في Main Area
-function renderNotesArea(){
-  const area = document.getElementById('notesArea');
-  area.innerHTML='';
-  notes.forEach((n,i)=>{
-    const div = document.createElement('div');
-    div.className='note-card';
-    div.setAttribute('data-index',i);
-    div.innerHTML = `<h3 contenteditable="true" oninput="saveNotes()">${n.title}</h3>
-                     <div contenteditable="true" class="text-editable" oninput="saveNotes()">${n.content}</div>`;
-    area.appendChild(div);
-  });
-}
+</main>
 
-// تفعيل مذكرة محددة
-function activateNote(index){
-  const sidebarItems = document.querySelectorAll('.sidebar-item');
-  sidebarItems.forEach((s,i)=>s.classList.toggle('active', i===index));
-  const notesCards = document.querySelectorAll('.note-card');
-  notesCards.forEach((c,i)=>c.style.display=(i===index?'block':'none'));
-}
+<footer>
+  <p>© 2026 Sparkly Corner — كتبت بهدوء ✨</p>
+</footer>
 
-// -------------------- الوضع الليلي --------------------
-function toggleDark(){ document.body.classList.toggle('dark'); }
-
-// -------------------- تغيير التصميم --------------------
-function toggleDesign(){
-  const stickers = document.querySelectorAll('.sticker');
-  if(isCute){
-    document.body.style.background='#f5f5f5';
-    document.body.style.color='#333';
-    stickers.forEach(s=>s.style.display='none');
-  } else {
-    document.body.style.background='#ffe4e1';
-    document.body.style.color='#880e4f';
-    stickers.forEach(s=>s.style.display='inline-block');
-  }
-  isCute=!isCute;
-}
-
-// -------------------- تغيير الخط --------------------
-function changeFont(){
-  const font = document.getElementById('fontSelect').value;
-  document.querySelectorAll('.text-editable, .note-card h3').forEach(el=>{
-    el.classList.remove('thin','cute','bold');
-    if(font==='thin') el.classList.add('thin');
-    else if(font==='cute') el.classList.add('cute');
-    else if(font==='bold') el.classList.add('bold');
-  });
-}
-
-// -------------------- تغيير لون النص --------------------
-function changeColor(){
-  const color = document.getElementById('textColor').value;
-  document.querySelectorAll('.text-editable, .note-card h3').forEach(el=>el.style.color=color);
-}
-
-// -------------------- رفع الصور --------------------
-const imageUpload = document.getElementById('imageUpload');
-const imagesContainer = document.getElementById('imagesContainer');
-imageUpload.addEventListener('change',function(){
-  for(const file of this.files){
-    const reader = new FileReader();
-    reader.onload = function(e){
-      const img=document.createElement('img');
-      img.src=e.target.result;
-      img.className='user-image';
-      imagesContainer.appendChild(img);
-    }
-    reader.readAsDataURL(file);
-  }
-});
-
-// -------------------- حفظ تلقائي --------------------
-function saveNotes(){
-  const notesArea = document.getElementById('notesArea').children;
-  notes.forEach((n,i)=>{
-    const div = notesArea[i];
-    n.title = div.querySelector('h3').innerText;
-    n.content = div.querySelector('.text-editable').innerText;
-  });
-  localStorage.setItem('notesData',JSON.stringify(notes));
-}
-
-function loadNotes(){
-  const saved = JSON.parse(localStorage.getItem('notesData')||'[]');
-  if(saved.length>0) notes=saved;
-  renderSidebar();
-  renderNotesArea();
-  activateNote(0);
-}
-window.addEventListener('load',loadNotes);
-
-// -------------------- تصدير PDF --------------------
-function exportPDF(){
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  notes.forEach((n,i)=>{
-    doc.text(`المذكرة: ${n.title}`,10,10+i*20);
-    doc.text(n.content,10,15+i*20);
-  });
-  doc.save('مذكرتي.pdf');
-}
-
-// -------------------- Drag & Drop للملصقات --------------------
-const stickers = document.querySelectorAll('.sticker');
-stickers.forEach(sticker=>{
-  sticker.addEventListener('dragstart',e=>{
-    e.dataTransfer.setData('text/plain', sticker.src);
-  });
-});
-imagesContainer.addEventListener('dragover',e=>e.preventDefault());
-imagesContainer.addEventListener('drop',e=>{
-  e.preventDefault();
-  const src = e.dataTransfer.getData('text/plain');
-  const img = document.createElement('img');
-  img.src = src; img.className='user-image';
-  imagesContainer.appendChild(img);
-});
-
-</script>
+<script src="script.js"></script>
 </body>
 </html>
