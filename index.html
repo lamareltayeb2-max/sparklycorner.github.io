@@ -1,84 +1,56 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sparkly Corner 🌸</title>
-
-<!-- خطوط عربية -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
-
-<!-- ربط ملف CSS -->
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>مساحة الخواطر</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-<header>
-  <h1>Sparkly Corner 🌸</h1>
-  <nav>
-    <button onclick="showSection('home')">الرئيسية</button>
-    <button onclick="showSection('thoughts')">خواطر</button>
-    <button onclick="showSection('reflections')">تأملات</button>
-    <button onclick="showSection('messages')">رسائل</button>
-  </nav>
-  <button class="dark-btn" onclick="toggleDark()">🌙</button>
-  <label>لون الخلفية:</label>
-  <select id="bgColorSelect" onchange="changeBackground()">
-    <option value="#faf7f8">افتراضي</option>
-    <option value="#add8e6">أزرق فاتح</option>
-    <option value="#f5f5dc">بيج</option>
-    <option value="#dda0dd">بنفسجي</option>
-    <option value="#90ee90">أخضر فاتح</option>
-    <option value="#ffe4e1">زهري فاتح</option>
-  </select>
-</header>
+<body class="theme-purple">
+<div class="app">
 
-<main>
-  <!-- الرئيسية -->
-  <section id="home" class="section active">
-    <h2 contenteditable="true" id="homeTitle">مرحبا بك في Sparkly Corner</h2>
-    <div class="card">
-      <p contenteditable="true" id="homeContent">هنا مساحة للهدوء، التأمل، والخواطر الإنسانية 🌿</p>
-    </div>
-  </section>
+  <h1>مساحة الخواطر 🌿</h1>
+  <p class="subtitle fixed-text">
+    هنا مساحة للهدوء، التأمل، والخواطر الإنسانية
+  </p>
 
-  <!-- الخواطر -->
-  <section id="thoughts" class="section">
-    <h2 contenteditable="true" id="thoughtsTitle">خواطر</h2>
-    <div class="card">
-      <p contenteditable="true" id="thought1">ابدأي بكتابة خواطرك هنا ✍️</p>
-    </div>
-    <div class="card">
-      <p contenteditable="true" id="thought2">مذكرة ثانية للخواطر ✨</p>
-    </div>
-  </section>
+  <div class="controls">
+    <button onclick="changeTheme()">🎨</button>
+    <button onclick="toggleQuiet()">🌙</button>
+    <button onclick="addCard()">➕</button>
+    <button onclick="exportNotes()">📤</button>
+  </div>
 
-  <!-- التأملات -->
-  <section id="reflections" class="section">
-    <h2 contenteditable="true" id="reflectionsTitle">تأملات</h2>
-    <div class="card">
-      <p contenteditable="true" id="reflection1">"كل يوم هو فرصة جديدة 🌿"</p>
-    </div>
-    <div class="card">
-      <p contenteditable="true" id="reflection2">"تقدري أن تصنعي سعادة اليوم 💖"</p>
-    </div>
-  </section>
+  <p class="counter">🕊️ أيام الكتابة: <span id="days">0</span></p>
 
   <!-- الرسائل -->
-  <section id="messages" class="section">
-    <h2 contenteditable="true" id="messagesTitle">رسائل</h2>
-    <div class="card">
-      <p contenteditable="true" id="message1">كتبي رسالتك هنا ✉️</p>
+  <div class="messages">
+    <div class="side">
+      <button onclick="openMessage('private')">رسائل إلى نفسي</button>
+      <button onclick="openMessage('temp')">رسائل لا تُحفظ</button>
+      <button onclick="openMessage('daily')">رسالة اليوم</button>
     </div>
-    <div class="card">
-      <p contenteditable="true" id="message2">مذكرة ثانية للرسائل 💌</p>
-    </div>
-  </section>
-</main>
 
-<footer>
-  <p>© 2026 Sparkly Corner — كتبت بهدوء ✨</p>
-</footer>
+    <div class="content">
+      <p id="messageArea" contenteditable="true">
+        اختاري نوع الرسالة…
+      </p>
+    </div>
+  </div>
+
+  <!-- الوسوم -->
+  <input id="tags" placeholder="وسوم: تأمل، امتنان، سلام">
+
+  <!-- الخواطر -->
+  <div id="cards">
+    <div class="card">
+      <p contenteditable="true">
+        ابدئي الكتابة هنا ✍️
+      </p>
+    </div>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
