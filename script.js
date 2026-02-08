@@ -1,59 +1,47 @@
-let themes = ["theme-purple","theme-green","theme-blue","theme-beige"];
-let themeIndex = 0;
-let quiet = false;
+let current = "home";
+let dark = false;
 let days = new Set();
 
-function changeTheme(){
-  document.body.className = themes[themeIndex];
-  themeIndex = (themeIndex+1)%themes.length;
+const quotes = [
+  "كن لطيفًا مع نفسك، أنت تحاول.",
+  "الهدوء ليس هروبًا، بل شفاء.",
+  "ما تكتبه اليوم قد ينقذك غدًا."
+];
+
+document.getElementById("quote").innerText =
+  quotes[Math.floor(Math.random() * quotes.length)];
+
+function show(id) {
+  document.getElementById(current).classList.remove("active");
+  document.getElementById(id).classList.add("active");
+  current = id;
 }
 
-function toggleQuiet(){
-  quiet = !quiet;
-  document.body.classList.toggle("quiet");
+function toggleMode() {
+  dark = !dark;
+  document.body.className = dark ? "dark" : "light";
+  document.getElementById("modeText").innerText = dark ? "داكن" : "فاتح";
 }
 
-function addCard(){
-  const c = document.createElement("div");
-  c.className="card";
-  const p=document.createElement("p");
-  p.contentEditable=true;
-  p.innerText="خواطرة جديدة…";
-  c.appendChild(p);
-  document.getElementById("cards").appendChild(c);
-  trackDay();
+function addThought() {
+  const div = document.createElement("div");
+  div.className = "card";
+  div.contentEditable = true;
+  div.innerText = "اكتب خاطرتك هنا…";
+  document.getElementById("thoughtsArea").appendChild(div);
+  track();
 }
 
-function openMessage(type){
-  const area=document.getElementById("messageArea");
-  area.contentEditable=true;
-
-  if(type==="private"){
-    area.innerText="هذه رسالة لا يراها أحد…";
+function burn() {
+  const box = document.getElementById("messageBox");
+  if (box.value.trim() !== "") {
+    box.value = "";
+    track();
   }
-  if(type==="temp"){
-    area.innerText="هذه رسالة ستختفي عند التحديث";
-  }
-  if(type==="daily"){
-    area.contentEditable=false;
-    area.innerText="رسالة اليوم: كوني لطيفة مع نفسك 🌿";
-  }
 }
 
-function trackDay(){
-  const today=new Date().toDateString();
+function track() {
+  const today = new Date().toDateString();
   days.add(today);
-  document.getElementById("days").innerText=days.size;
-}
-
-function exportNotes(){
-  let text="";
-  document.querySelectorAll(".card p").forEach(p=>{
-    text+=p.innerText+"\n\n";
-  });
-  const blob=new Blob([text],{type:"text/plain"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="خواطري.txt";
-  a.click();
+  document.getElementById("daysCount").innerText = days.size;
 }
