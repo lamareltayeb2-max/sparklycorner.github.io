@@ -1,77 +1,101 @@
+* {
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Tahoma;
   transition: 0.4s;
 }
 
-.app {
+header {
+  text-align: center;
+  padding: 30px;
+}
+
+nav button {
+  border: none;
+  background: none;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.mode {
+  margin-top: 15px;
+  border-radius: 20px;
+  padding: 6px 16px;
+}
+
+main {
   max-width: 720px;
   margin: auto;
-  padding: 30px;
+  padding: 20px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background: rgba(0,0,0,0.05);
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.center {
   text-align: center;
 }
 
-.fixed-text {
-  color: #555;
-  pointer-events: none;
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 15px;
+  padding: 15px;
+  border: none;
 }
 
-.controls button {
-  margin: 5px;
-  padding: 8px 12px;
-  border-radius: 10px;
+.tags span {
+  display: inline-block;
+  background: #ddd;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin: 4px;
+}
+
+.add, .burn {
+  margin-top: 15px;
+  border-radius: 20px;
+  padding: 8px 20px;
   border: none;
   cursor: pointer;
 }
 
-.messages {
-  display: flex;
-  gap: 10px;
+.burn {
+  background: #ff6b6b;
+  color: white;
+}
+
+.days {
   margin-top: 20px;
-}
-
-.side {
-  width: 35%;
-}
-
-.side button {
-  display: block;
   width: 100%;
-  margin-bottom: 5px;
+  text-align: center;
 }
 
-.content {
-  width: 65%;
+.light {
+  background: #fafafa;
+  color: #222;
 }
 
-#messageArea {
-  min-height: 120px;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
+.dark {
+  background: #111;
+  color: #eee;
 }
 
-.card {
-  background: white;
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 15px;
+.dark .card,
+.dark textarea {
+  background: #1c1c1c;
 }
-
-input {
-  width: 100%;
-  margin-top: 15px;
-  padding: 8px;
-}
-
-/* الكتابة الهادئة */
-.quiet .controls,
-.quiet .side {
-  opacity: 0.2;
-}
-
-/* الألوان */
-.theme-purple { background:#f3ecff; }
-.theme-green { background:#eaf7ef; }
-.theme-blue { background:#eaf1ff; }
-.theme-beige { background:#f7f1e6; }
