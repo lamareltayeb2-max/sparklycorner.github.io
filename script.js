@@ -1,20 +1,11 @@
-let current = "home";
+let currentPage = "home";
 let dark = false;
 let days = new Set();
 
-const quotes = [
-  "كن لطيفًا مع نفسك، أنت تحاول.",
-  "الهدوء ليس هروبًا، بل شفاء.",
-  "ما تكتبه اليوم قد ينقذك غدًا."
-];
-
-document.getElementById("quote").innerText =
-  quotes[Math.floor(Math.random() * quotes.length)];
-
-function show(id) {
-  document.getElementById(current).classList.remove("active");
+function goTo(id) {
+  document.getElementById(currentPage).classList.remove("active");
   document.getElementById(id).classList.add("active");
-  current = id;
+  currentPage = id;
 }
 
 function toggleMode() {
@@ -25,23 +16,41 @@ function toggleMode() {
 
 function addThought() {
   const div = document.createElement("div");
-  div.className = "card";
+  div.className = "thought";
   div.contentEditable = true;
-  div.innerText = "اكتب خاطرتك هنا…";
+  div.innerText = "ابدئي بالكتابة…";
+
+  div.addEventListener("input", () => {
+    updateForMe();
+    trackDay();
+  });
+
   document.getElementById("thoughtsArea").appendChild(div);
-  track();
+}
+
+function updateForMe() {
+  const container = document.getElementById("forMe");
+  container.innerHTML = "";
+
+  document.querySelectorAll(".thought").forEach(t => {
+    if (t.innerText.trim()) {
+      const item = document.createElement("div");
+      item.className = "for-me-item";
+      item.innerText = t.innerText;
+      container.appendChild(item);
+    }
+  });
 }
 
 function burn() {
   const box = document.getElementById("messageBox");
-  if (box.value.trim() !== "") {
+  if (box.value.trim()) {
     box.value = "";
-    track();
+    trackDay();
   }
 }
 
-function track() {
-  const today = new Date().toDateString();
-  days.add(today);
+function trackDay() {
+  days.add(new Date().toDateString());
   document.getElementById("daysCount").innerText = days.size;
 }
