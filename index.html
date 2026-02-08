@@ -2,55 +2,75 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>مساحة الخواطر</title>
+  <title>Sparkly Corner</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="theme-purple">
-<div class="app">
+<body class="light">
 
-  <h1>مساحة الخواطر 🌿</h1>
-  <p class="subtitle fixed-text">
-    هنا مساحة للهدوء، التأمل، والخواطر الإنسانية
-  </p>
+<header>
+  <h1>Sparkly Corner 🌸</h1>
+  <p class="intro">هنا مساحة للهدوء، التأمل، والخواطر الإنسانية</p>
 
-  <div class="controls">
-    <button onclick="changeTheme()">🎨</button>
-    <button onclick="toggleQuiet()">🌙</button>
-    <button onclick="addCard()">➕</button>
-    <button onclick="exportNotes()">📤</button>
+  <nav>
+    <button onclick="show('home')">الرئيسية</button>
+    <button onclick="show('thoughts')">خواطر</button>
+    <button onclick="show('reflections')">تأملات</button>
+    <button onclick="show('messages')">رسائل</button>
+  </nav>
+
+  <button class="mode" onclick="toggleMode()">
+    الوضع: <span id="modeText">فاتح</span>
+  </button>
+</header>
+
+<main>
+
+<section id="home" class="section active">
+  <div class="card center">
+    🌿 خذي نفسًا… هذا مكانك الآمن للكتابة
   </div>
 
-  <p class="counter">🕊️ أيام الكتابة: <span id="days">0</span></p>
+  <h3 class="soft-title">لِنفسي ✨</h3>
+  <div id="forMe" class="for-me"></div>
+</section>
 
-  <!-- الرسائل -->
-  <div class="messages">
-    <div class="side">
-      <button onclick="openMessage('private')">رسائل إلى نفسي</button>
-      <button onclick="openMessage('temp')">رسائل لا تُحفظ</button>
-      <button onclick="openMessage('daily')">رسالة اليوم</button>
-    </div>
+<section id="thoughts" class="section">
+  <h2>✍️ الخواطر</h2>
+  <div id="thoughtsArea"></div>
+  <button class="add" onclick="addThought()">➕ إضافة خاطرة</button>
+</section>
 
-    <div class="content">
-      <p id="messageArea" contenteditable="true">
-        اختاري نوع الرسالة…
-      </p>
-    </div>
+<section id="reflections" class="section">
+  <h2>🌿 تأمل اليوم</h2>
+  <div class="card" id="quote"></div>
+</section>
+
+<section id="messages" class="section">
+  <h2>✉️ الرسائل</h2>
+  <p class="soft">اكتب ودعها تذهب</p>
+
+  <textarea id="messageBox" placeholder="اكتب هنا..."></textarea>
+
+  <div class="tags">
+    <span>#تفريغ</span>
+    <span>#هدوء</span>
+    <span>#راحة</span>
   </div>
 
-  <!-- الوسوم -->
-  <input id="tags" placeholder="وسوم: تأمل، امتنان، سلام">
+  <button class="burn" onclick="burn()">🔥 إحراق الرسالة</button>
 
-  <!-- الخواطر -->
-  <div id="cards">
-    <div class="card">
-      <p contenteditable="true">
-        ابدئي الكتابة هنا ✍️
-      </p>
-    </div>
-  </div>
+  <table class="days">
+    <tr><th>أيام الكتابة</th></tr>
+    <tr><td id="daysCount">0</td></tr>
+  </table>
+</section>
 
-</div>
+</main>
+
+<footer>
+  © Sparkly Corner
+</footer>
 
 <script src="script.js"></script>
 </body>
