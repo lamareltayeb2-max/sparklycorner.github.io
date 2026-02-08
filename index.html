@@ -8,67 +8,67 @@
 
 <body class="light">
 
-<header>
+<header class="header">
   <h1>Sparkly Corner 🌸</h1>
   <p class="intro">هنا مساحة للهدوء، التأمل، والخواطر الإنسانية</p>
 
-  <nav>
-    <button onclick="show('home')">الرئيسية</button>
-    <button onclick="show('thoughts')">خواطر</button>
-    <button onclick="show('reflections')">تأملات</button>
-    <button onclick="show('messages')">رسائل</button>
+  <nav class="nav">
+    <button onclick="goTo('home')">الرئيسية</button>
+    <button onclick="goTo('thoughts')">الخواطر</button>
+    <button onclick="goTo('messages')">الرسائل</button>
   </nav>
 
-  <button class="mode" onclick="toggleMode()">
+  <button class="mode-btn" onclick="toggleMode()">
     الوضع: <span id="modeText">فاتح</span>
   </button>
 </header>
 
-<main>
+<main class="pages">
 
-<section id="home" class="section active">
-  <div class="card center">
-    🌿 خذي نفسًا… هذا مكانك الآمن للكتابة
-  </div>
+  <!-- الصفحة الرئيسية -->
+  <section id="home" class="page active">
+    <div class="center-card">
+      🌿 خذي نفسًا…  
+      <br>هذا مكانك الآمن
+    </div>
 
-  <h3 class="soft-title">لِنفسي ✨</h3>
-  <div id="forMe" class="for-me"></div>
-</section>
+    <h3 class="soft-title">لِنفسي ✨</h3>
+    <div id="forMe" class="for-me"></div>
+  </section>
 
-<section id="thoughts" class="section">
-  <h2>✍️ الخواطر</h2>
-  <div id="thoughtsArea"></div>
-  <button class="add" onclick="addThought()">➕ إضافة خاطرة</button>
-</section>
+  <!-- الخواطر -->
+  <section id="thoughts" class="page">
+    <h2>✍️ الخواطر</h2>
 
-<section id="reflections" class="section">
-  <h2>🌿 تأمل اليوم</h2>
-  <div class="card" id="quote"></div>
-</section>
+    <div id="thoughtsArea" class="writing-area"></div>
 
-<section id="messages" class="section">
-  <h2>✉️ الرسائل</h2>
-  <p class="soft">اكتب ودعها تذهب</p>
+    <button class="add-btn" onclick="addThought()">➕ إضافة مساحة كتابة</button>
+  </section>
 
-  <textarea id="messageBox" placeholder="اكتب هنا..."></textarea>
+  <!-- الرسائل -->
+  <section id="messages" class="page">
+    <h2>✉️ الرسائل</h2>
+    <p class="soft">اكتب ودعها تذهب</p>
 
-  <div class="tags">
-    <span>#تفريغ</span>
-    <span>#هدوء</span>
-    <span>#راحة</span>
-  </div>
+    <textarea id="messageBox" placeholder="اكتب ما لا تريد الاحتفاظ به…"></textarea>
 
-  <button class="burn" onclick="burn()">🔥 إحراق الرسالة</button>
+    <div class="tags">
+      <span>🕊️ هدوء</span>
+      <span>🔥 تفريغ</span>
+      <span>💭 اعتراف</span>
+    </div>
 
-  <table class="days">
-    <tr><th>أيام الكتابة</th></tr>
-    <tr><td id="daysCount">0</td></tr>
-  </table>
-</section>
+    <button class="burn-btn" onclick="burn()">🔥 إحراق الرسالة</button>
+
+    <table class="days-table">
+      <tr><th>أيام كتبت فيها</th></tr>
+      <tr><td id="daysCount">0</td></tr>
+    </table>
+  </section>
 
 </main>
 
-<footer>
+<footer class="footer">
   © Sparkly Corner
 </footer>
 
