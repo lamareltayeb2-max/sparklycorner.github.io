@@ -1,133 +1,87 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Cairo', sans-serif;
+:root {
+  --bg: #f6f6f6;
+  --text: #222;
+  --card: #fff;
+  --accent: #7fb69c;
+}
+
+body.dark {
+  --bg: #1f1f1f;
+  --text: #eee;
+  --card: #2c2c2c;
 }
 
 body {
   margin: 0;
-  background: #faf7f8;
-  color: #333;
-  transition: background 0.4s, color 0.4s;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui;
+  display: flex;
+  font-size: clamp(16px, 4vw, 18px);
 }
 
-body.dark {
-  background: #121212;
-  color: #eee;
+.sidebar {
+  width: 90px;
+  padding: 10px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Header */
-.header {
-  padding: 30px 20px;
-  text-align: center;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.nav button {
-  margin: 0 8px;
+.sidebar button {
   background: none;
   border: none;
-  font-size: 15px;
-  cursor: pointer;
-  color: inherit;
-}
-
-.nav button:hover {
-  text-decoration: underline;
-}
-
-.mode-btn {
-  margin-top: 15px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: none;
+  margin: 6px 0;
   cursor: pointer;
 }
 
-/* Pages container */
-.pages {
-  position: relative;
-  min-height: 70vh;
+.colors span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 3px;
+  cursor: pointer;
 }
 
-/* Individual pages */
-.page {
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: 0.5s;
-  padding: 40px 20px;
-  max-width: 800px;
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.section {
+  display: none;
+  max-width: 720px;
   margin: auto;
 }
 
-.page.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.section.active {
+  display: block;
 }
 
-/* Cards */
-.center-card {
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-}
-
-body.dark .center-card {
-  background: #1f1f1f;
-}
-
-/* Writing */
-.writing-area .thought {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 15px;
-  min-height: 80px;
-}
-
-body.dark .writing-area .thought {
-  background: #1f1f1f;
-}
-
-.add-btn {
-  margin-top: 20px;
-}
-
-/* Messages */
 textarea {
   width: 100%;
-  height: 140px;
-  border-radius: 16px;
-  padding: 15px;
-  border: none;
-}
-
-.tags span {
-  margin-right: 8px;
-  background: rgba(0,0,0,0.05);
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: inline-block;
-}
-
-.burn-btn {
-  margin-top: 15px;
-}
-
-/* For Me */
-.for-me-item {
-  background: rgba(0,0,0,0.05);
+  min-height: 120px;
+  resize: none;
   padding: 12px;
-  border-radius: 14px;
-  margin-bottom: 10px;
+  border-radius: 12px;
+  border: none;
+  background: var(--card);
+  font-size: 1rem;
 }
 
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 13px;
-  opacity: 0.6;
+.add, .burn {
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
