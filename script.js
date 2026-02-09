@@ -1,56 +1,42 @@
-let currentPage = "home";
-let dark = false;
-let days = new Set();
-
-function goTo(id) {
-  document.getElementById(currentPage).classList.remove("active");
-  document.getElementById(id).classList.add("active");
-  currentPage = id;
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function toggleMode() {
-  dark = !dark;
-  document.body.className = dark ? "dark" : "light";
-  document.getElementById("modeText").innerText = dark ? "داكن" : "فاتح";
+function setMode(mode) {
+  document.body.classList.toggle('dark', mode === 'dark');
+}
+
+function setColor(color) {
+  document.body.className = document.body.className.replace(/\b(green|pink|blue|brown|orange|purple|white)\b/g, '');
+  document.body.classList.add(color);
 }
 
 function addThought() {
-  const div = document.createElement("div");
-  div.className = "thought";
-  div.contentEditable = true;
-  div.innerText = "ابدئي بالكتابة…";
-
-  div.addEventListener("input", () => {
-    updateForMe();
-    trackDay();
-  });
-
-  document.getElementById("thoughtsArea").appendChild(div);
+  const d = document.createElement('div');
+  d.className = 'card';
+  d.contentEditable = true;
+  d.innerText = 'اكتب خاطرتك…';
+  document.getElementById('thoughtList').appendChild(d);
 }
 
-function updateForMe() {
-  const container = document.getElementById("forMe");
-  container.innerHTML = "";
-
-  document.querySelectorAll(".thought").forEach(t => {
-    if (t.innerText.trim()) {
-      const item = document.createElement("div");
-      item.className = "for-me-item";
-      item.innerText = t.innerText;
-      container.appendChild(item);
-    }
+const textarea = document.getElementById("burnText");
+if (textarea) {
+  textarea.addEventListener("input", () => {
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
   });
 }
 
 function burn() {
-  const box = document.getElementById("messageBox");
-  if (box.value.trim()) {
-    box.value = "";
-    trackDay();
-  }
+  document.getElementById('burnText').value = '';
 }
 
-function trackDay() {
-  days.add(new Date().toDateString());
-  document.getElementById("daysCount").innerText = days.size;
-}
+const motivations = [
+  "أنت تفعل ما يكفي.",
+  "الهدوء قوة.",
+  "خذ وقتك."
+];
+
+document.getElementById("dailyMotivation").innerText =
+  motivations[new Date().getDate() % motivations.length];
