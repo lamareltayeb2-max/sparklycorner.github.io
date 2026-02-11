@@ -1,75 +1,74 @@
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+function openSection(id){
+  document.querySelector('.home').style.display='none';
+  document.querySelectorAll('.section').forEach(sec=>sec.style.display='none');
+  document.getElementById(id).style.display='block';
 }
 
-// الوضع الداكن / الفاتح
-const toggle = document.getElementById("modeToggle");
-toggle.onclick = () => {
-  document.body.classList.toggle("dark");
-  toggle.textContent = document.body.classList.contains("dark") ? "داكن" : "فاتح";
-};
+function goHome(){
+  document.querySelectorAll('.section').forEach(sec=>sec.style.display='none');
+  document.querySelector('.home').style.display='flex';
+}
 
-// تغيير اللون
-document.querySelectorAll(".colors span").forEach(c => {
-  c.onclick = () => {
-    document.documentElement.style.setProperty("--bg", c.dataset.color);
-  };
-});
+function toggleMode(){
+  document.body.classList.toggle('dark');
+  let btn=document.querySelector('.theme-toggle');
+  btn.textContent=document.body.classList.contains('dark')?'فاتح':'داكن';
+}
 
-// تكبير تلقائي للرسائل
-document.querySelectorAll(".auto-grow").forEach(t => {
-  t.addEventListener("input", () => {
-    t.style.height = "auto";
-    t.style.height = t.scrollHeight + "px";
-  });
-});
+function changeColor(color){
+  document.documentElement.style.setProperty('--main-color',color);
+}
 
-// لنفسي
-const affirmations = [
-  "أنا أستحق السلام.",
-  "كل شيء سيتحسن.",
-  "أنا أقوى مما أظن.",
-  "التعب لا يعني الفشل.",
-  "أنا كافية."
+const quotes=[
+"أنتِ قادرة على أكثر مما تظنين 🤍",
+"خطوة صغيرة اليوم تصنع فرقًا غدًا 🌿",
+"كوني لطيفة مع نفسك دائمًا"
 ];
 
-const books = [
-  "لأنك الله",
-  "الخيميائي",
-  "فاتتني صلاة",
-  "حديث الصباح"
-];
-
-const podcasts = [
-  "فنجان",
-  "وعي",
-  "كنبة السبت",
-  "أشياء غيرتنا"
-];
-
-function loadDaily() {
-  const day = new Date().getDate();
-  const box = document.getElementById("affirmations");
-  box.innerHTML = "";
-
-  for (let i = 0; i < 3; i++) {
-    const p = document.createElement("p");
-    p.textContent = affirmations[(day + i) % affirmations.length];
-    box.appendChild(p);
+function loadQuotes(){
+  const container=document.getElementById("dailyQuotes");
+  container.innerHTML="";
+  let day=new Date().getDate();
+  for(let i=0;i<3;i++){
+    let q=document.createElement("p");
+    q.textContent=quotes[(day+i)%quotes.length];
+    container.appendChild(q);
   }
-
-  document.getElementById("book").textContent = books[day % books.length];
-  document.getElementById("podcast").textContent = podcasts[day % podcasts.length];
 }
 
-function addAffirmation() {
-  const input = document.getElementById("ownAffirmation");
-  if (!input.value.trim()) return;
-  const p = document.createElement("p");
-  p.textContent = input.value;
-  document.getElementById("affirmations").appendChild(p);
-  input.value = "";
+function addPersonalQuote(){
+  let text=prompt("اكتبي عبارتك التحفيزية:");
+  if(text){
+    let p=document.createElement("p");
+    p.textContent=text;
+    document.getElementById("dailyQuotes").appendChild(p);
+  }
 }
 
-loadDaily();
+const books=[
+"رواية خوف - أسامة المسلم",
+"Atomic Habits",
+"فن اللامبالاة"
+];
+
+function loadBook(){
+  let day=new Date().getDate();
+  document.getElementById("bookSuggestion").innerHTML=
+  "<h3>اقتراح اليوم:</h3><p>"+books[day%books.length]+"</p>";
+}
+
+function loadPlanner(){
+  const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة"];
+  const container=document.getElementById("plannerContainer");
+  days.forEach(day=>{
+    let div=document.createElement("div");
+    div.innerHTML=`<strong>${day}</strong>
+    <input type="text" placeholder="مهمة...">
+    <input type="checkbox">`;
+    container.appendChild(div);
+  });
+}
+
+loadQuotes();
+loadBook();
+loadPlanner();
