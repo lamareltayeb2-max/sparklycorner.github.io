@@ -1,121 +1,63 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sparkly Corner</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparkly Corner</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-  <h1>ركنّي الهادئ</h1>
+<div class="theme-toggle" onclick="toggleMode()">داكن</div>
 
-  <div class="top-actions">
-    <button id="modeToggle">فاتح</button>
+<div class="color-picker" id="colorPicker">
+  <span onclick="changeColor('#4CAF50')" style="background:#4CAF50"></span>
+  <span onclick="changeColor('#e91e63')" style="background:#e91e63"></span>
+  <span onclick="changeColor('#2196F3')" style="background:#2196F3"></span>
+  <span onclick="changeColor('#795548')" style="background:#795548"></span>
+  <span onclick="changeColor('#ff9800')" style="background:#ff9800"></span>
+  <span onclick="changeColor('#9c27b0')" style="background:#9c27b0"></span>
+  <span onclick="changeColor('#ffffff')" style="background:#ffffff;border:1px solid #ccc"></span>
+</div>
 
-    <div class="colors">
-      <span data-color="#d8f3dc"></span>
-      <span data-color="#ffe5ec"></span>
-      <span data-color="#e0f2fe"></span>
-      <span data-color="#fef9c3"></span>
-      <span data-color="#ede9fe"></span>
-      <span data-color="#ffffff"></span>
-    </div>
-  </div>
+<header class="main-header">
+  <h1>Sparkly Corner</h1>
+  <p>مساحتك الهادئة للكتابة والتنظيم 🤍</p>
 </header>
 
-<nav>
-  <button onclick="showPage('thoughts')">خواطر</button>
-  <button onclick="showPage('messages')">رسائل</button>
-  <button onclick="showPage('myself')">لنفسي</button>
-  <button onclick="showPage('schedule')">جدولي</button>
-</nav>
+<section class="home" id="home">
+  <div class="card" onclick="openSection('khawatir')">خواطر</div>
+  <div class="card" onclick="openSection('letters')">رسائل</div>
+  <div class="card" onclick="openSection('myself')">لنفسي</div>
+  <div class="card" onclick="openSection('planner')">جدولي</div>
+</section>
 
-<main>
+<section class="section" id="khawatir">
+  <button onclick="goHome()">رجوع</button>
+  <h2>خواطر</h2>
+  <textarea placeholder="اكتبي خاطرتك هنا..."></textarea>
+</section>
 
-  <!-- خواطر -->
-  <section id="thoughts" class="page active">
-    <h2>خواطر</h2>
-    <textarea placeholder="اكتبي خاطرتك هنا..."></textarea>
-  </section>
+<section class="section" id="letters">
+  <button onclick="goHome()">رجوع</button>
+  <h2>رسائل</h2>
+  <textarea id="lettersArea" placeholder="اكتبي رسالتك هنا..."></textarea>
+</section>
 
-  <!-- رسائل -->
-  <section id="messages" class="page">
-    <h2>رسائل</h2>
-    <textarea class="auto-grow" placeholder="اكتبي رسالتك..."></textarea>
-  </section>
+<section class="section" id="myself">
+  <button onclick="goHome()">رجوع</button>
+  <h2>لنفسي</h2>
+  <div id="dailyQuotes"></div>
+  <button onclick="addPersonalQuote()">➕ إضافة عبارة خاصة</button>
+  <div id="bookSuggestion"></div>
+</section>
 
-  <!-- لنفسي -->
-  <section id="myself" class="page">
-    <h2>لنفسي</h2>
-
-    <div id="affirmations" class="box"></div>
-
-    <div class="add">
-      <input id="ownAffirmation" placeholder="عبارة تحفيزية لنفسي">
-      <button onclick="addAffirmation()">➕</button>
-    </div>
-
-    <div class="box">
-      <h3>📚 كتاب اليوم</h3>
-      <p id="book"></p>
-
-      <h3>🎧 بودكاست اليوم</h3>
-      <p id="podcast"></p>
-    </div>
-  </section>
-
-  <!-- جدولي -->
-  <section id="schedule" class="page">
-    <h2>جدولي</h2>
-
-    <table>
-      <tr>
-        <th>اليوم</th>
-        <th>المهمة</th>
-        <th>تم</th>
-      </tr>
-
-      <tr>
-        <td>الأحد</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>الاثنين</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>الثلاثاء</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>الأربعاء</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>الخميس</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>الجمعة</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-      <tr>
-        <td>السبت</td>
-        <td><input></td>
-        <td><input type="checkbox"></td>
-      </tr>
-    </table>
-  </section>
-
-</main>
+<section class="section" id="planner">
+  <button onclick="goHome()">رجوع</button>
+  <h2>جدولي الأسبوعي</h2>
+  <div class="planner" id="plannerContainer"></div>
+</section>
 
 <script src="script.js"></script>
 </body>
