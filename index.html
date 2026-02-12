@@ -6,58 +6,29 @@
 <title>Sparkly Corner</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="theme-toggle" onclick="toggleMode()">داكن</div>
+<div class="theme-btn" onclick="toggleTheme()">داكن</div>
 
-<div class="color-picker" id="colorPicker">
-  <span onclick="changeColor('#4CAF50')" style="background:#4CAF50"></span>
-  <span onclick="changeColor('#e91e63')" style="background:#e91e63"></span>
-  <span onclick="changeColor('#2196F3')" style="background:#2196F3"></span>
-  <span onclick="changeColor('#795548')" style="background:#795548"></span>
-  <span onclick="changeColor('#ff9800')" style="background:#ff9800"></span>
-  <span onclick="changeColor('#9c27b0')" style="background:#9c27b0"></span>
-  <span onclick="changeColor('#ffffff')" style="background:#ffffff;border:1px solid #ccc"></span>
-</div>
-
-<header class="main-header">
-  <h1>Sparkly Corner</h1>
-  <p>مساحتك الهادئة للكتابة والتنظيم 🤍</p>
+<header>
+Sparkly Corner 🤍
 </header>
 
-<section class="home" id="home">
-  <div class="card" onclick="openSection('khawatir')">خواطر</div>
-  <div class="card" onclick="openSection('letters')">رسائل</div>
-  <div class="card" onclick="openSection('myself')">لنفسي</div>
-  <div class="card" onclick="openSection('planner')">جدولي</div>
-</section>
+<div class="color-top">
+<span style="background:#4CAF50" onclick="changeColor('#4CAF50')"></span>
+<span style="background:#e91e63" onclick="changeColor('#e91e63')"></span>
+<span style="background:#2196F3" onclick="changeColor('#2196F3')"></span>
+<span style="background:#ff9800" onclick="changeColor('#ff9800')"></span>
+</div>
 
-<section class="section" id="khawatir">
-  <button onclick="goHome()">رجوع</button>
-  <h2>خواطر</h2>
-  <textarea placeholder="اكتبي خاطرتك هنا..."></textarea>
-</section>
-
-<section class="section" id="letters">
-  <button onclick="goHome()">رجوع</button>
-  <h2>رسائل</h2>
-  <textarea id="lettersArea" placeholder="اكتبي رسالتك هنا..."></textarea>
-</section>
-
-<section class="section" id="myself">
-  <button onclick="goHome()">رجوع</button>
-  <h2>لنفسي</h2>
-  <div id="dailyQuotes"></div>
-  <button onclick="addPersonalQuote()">➕ إضافة عبارة خاصة</button>
-  <div id="bookSuggestion"></div>
-</section>
-
-<section class="section" id="planner">
-  <button onclick="goHome()">رجوع</button>
-  <h2>جدولي الأسبوعي</h2>
-  <div class="planner" id="plannerContainer"></div>
-</section>
+<div class="container">
+<div class="cards">
+<a href="thoughts.html"><div class="card">خواطر</div></a>
+<a href="letters.html"><div class="card">رسائل</div></a>
+<a href="myself.html"><div class="card">لنفسي</div></a>
+<a href="planner.html"><div class="card">جدولي</div></a>
+</div>
+</div>
 
 <script src="script.js"></script>
 </body>
